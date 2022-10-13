@@ -1,0 +1,10 @@
+package listener
+
+import (
+	"github.com/Nixson/kafka"
+	listener "${path}"
+)
+
+func ${name}() {
+	kafka.Listen(listener.${method}, "${topic}", "${group}")
+}

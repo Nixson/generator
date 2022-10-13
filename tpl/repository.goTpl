@@ -1,0 +1,34 @@
+package repository
+
+import (
+	domain "${path}"
+	"github.com/Nixson/db"
+	logNx "github.com/Nixson/lognx"
+	"gorm.io/gorm"
+)
+
+var ${table}TableName = "${table}"
+
+func ${name}Create(${subname} *domain.${name}) *gorm.DB {
+	return db.Get().Table(${table}TableName).Create(${subname})
+}
+func ${name}GetAll() (*[]domain.${name}, *gorm.DB) {
+	var ${subname} []domain.${name}
+	result := db.Get().Table(${table}TableName).Find(&${subname})
+	return &${subname}, result
+}
+func ${name}Update(${subname} *domain.${name}) *gorm.DB {
+	return db.Get().Table(${table}TableName).Save(${subname})
+}
+func ${name}Delete(${subname} *domain.${name}) *gorm.DB {
+	return db.Get().Table(${table}TableName).Delete(${subname})
+}
+func ${name}() *gorm.DB {
+	return db.Get().Table(${table}TableName)
+}
+func ${name}Migrate() {
+	err := db.Get().AutoMigrate(domain.${name}{})
+	if err != nil {
+		logNx.Get().Error(err.Error())
+	}
+}

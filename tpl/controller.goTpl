@@ -1,0 +1,12 @@
+package controller
+
+import (
+	"github.com/Nixson/http/server"
+	ctr "${path}"
+)
+
+func InitController${name}() {
+	var ctx server.ContextInterface
+	ctx = &ctr.${name}{}
+	server.InitController("${name}", &ctx)
+}

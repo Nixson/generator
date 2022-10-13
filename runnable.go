@@ -151,7 +151,7 @@ func generate(annotationMap map[string][]annotation.Element) {
 		fileTplStr := string(fileTpl)
 		for _, element := range controller {
 			mapCont := make(map[string]string)
-			mapCont["path"] = moduleName + "/user/" + element.Url
+			mapCont["path"] = moduleName + "/" + element.Url
 			mapCont["name"] = element.StructName
 			newFileContent := replace(fileTplStr, mapCont)
 			f, _ := os.Create("vendor/gen/controller/" + strings.ToLower(element.StructName) + ".go")
@@ -176,7 +176,7 @@ func generate(annotationMap map[string][]annotation.Element) {
 		fileTplStr := string(fileTpl)
 		for _, element := range listener {
 			mapCont := make(map[string]string)
-			mapCont["path"] = moduleName + "/user/" + element.Url
+			mapCont["path"] = moduleName + "/" + element.Url
 			mapCont["name"] = element.StructName
 			mapCont["method"] = element.StructName
 			mapCont["topic"] = element.Parameters["topic"]

@@ -1,10 +1,10 @@
 package repository
 
 import (
-	domain "${path}"
 	"github.com/Nixson/db"
-	logNx "github.com/Nixson/lognx"
+	"github.com/Nixson/logger"
 	"gorm.io/gorm"
+	domain "${path}"
 )
 
 var ${table}TableName = "${table}"
@@ -29,6 +29,6 @@ func ${name}() *gorm.DB {
 func ${name}Migrate() {
 	err := db.Get().AutoMigrate(domain.${name}{})
 	if err != nil {
-		logNx.Get().Error(err.Error())
+		logger.Println(err.Error())
 	}
 }

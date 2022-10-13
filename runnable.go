@@ -205,7 +205,7 @@ func generate(annotationMap map[string][]annotation.Element) {
 		fileTplStr := string(fileTpl)
 		for _, element := range repository {
 			mapCont := make(map[string]string)
-			mapCont["path"] = moduleName + "/user/" + element.Url
+			mapCont["path"] = moduleName + "/" + element.Url
 			mapCont["name"] = element.StructName
 			mapCont["log"] = ""
 			mapCont["table"] = strings.ToLower(element.StructName)

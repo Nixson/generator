@@ -8,32 +8,36 @@ import (
 )
 
 var ${table}TableName = "${table}"
+var ${table}TableDB *gorm.DB
+func ${name}() *gorm.DB {
+    if ${table}TableDB == nil {
+    	${table}TableDB = db.Get().Table(${table}TableName)
+    }
+    return ${table}TableDB
+}
 
 func ${name}Create(${subname} *domain.${name}) *gorm.DB {
-	return db.Get().Table(${table}TableName).Create(${subname})
+	return ${name}().Create(${subname})
 }
 func ${name}GetAll() ([]domain.${name}, *gorm.DB) {
 	var ${subname} []domain.${name}
-	result := db.Get().Table(${table}TableName).Find(&${subname})
+	result := ${name}().Find(&${subname})
 	return ${subname}, result
 }
 func ${name}Update(${subname} *domain.${name}) *gorm.DB {
-	return db.Get().Table(${table}TableName).Save(${subname})
+	return ${name}().Save(${subname})
 }
 func ${name}Delete(${subname} *domain.${name}) *gorm.DB {
-	return db.Get().Table(${table}TableName).Delete(${subname})
-}
-func ${name}() *gorm.DB {
-	return db.Get().Table(${table}TableName)
+	return ${name}().Delete(${subname})
 }
 func ${name}GetAllByParams(param domain.${name}) []domain.${name} {
 	var ${subname} []domain.${name}
-	db.Get().Table(${table}TableName).Find(&${subname},param)
+	${name}().Find(&${subname},param)
 	return ${subname}
 }
 func ${name}GetByParams(param domain.${name}) domain.${name} {
 	var ${subname} domain.${name}
-	db.Get().Table(${table}TableName).First(&${subname},param)
+	${name}().First(&${subname},param)
 	return ${subname}
 }
 func ${name}Migrate() {

@@ -247,7 +247,7 @@ func generate(annotationMap map[string][]annotation.Element) {
 		}
 		if okMigration {
 			mapCont["migratePath"] = "\"gen/repository\"\n\t"
-			mapCont["migrate"] = strings.Join(migrationList, "\n\t")
+			mapCont["migrate"] = strings.Join(migrationList, "\n\t\t")
 		} else {
 			mapCont["migratePath"] = ""
 			mapCont["migrate"] = ""

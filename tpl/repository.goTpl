@@ -12,10 +12,10 @@ var ${table}TableName = "${table}"
 func ${name}Create(${subname} *domain.${name}) *gorm.DB {
 	return db.Get().Table(${table}TableName).Create(${subname})
 }
-func ${name}GetAll() (*[]domain.${name}, *gorm.DB) {
+func ${name}GetAll() ([]domain.${name}, *gorm.DB) {
 	var ${subname} []domain.${name}
 	result := db.Get().Table(${table}TableName).Find(&${subname})
-	return &${subname}, result
+	return ${subname}, result
 }
 func ${name}Update(${subname} *domain.${name}) *gorm.DB {
 	return db.Get().Table(${table}TableName).Save(${subname})
@@ -25,6 +25,16 @@ func ${name}Delete(${subname} *domain.${name}) *gorm.DB {
 }
 func ${name}() *gorm.DB {
 	return db.Get().Table(${table}TableName)
+}
+func ${name}GetAllByParams(param domain.${name}) []domain.${name} {
+	var ${subname} []domain.${name}
+	db.Get().Table(${table}TableName).Find(&${subname},param)
+	return ${subname}
+}
+func ${name}GetByParams(param domain.${name}) domain.${name} {
+	var ${subname} domain.${name}
+	db.Get().Table(${table}TableName).First(&${subname},param)
+	return ${subname}
 }
 func ${name}Migrate() {
 	err := db.Get().AutoMigrate(domain.${name}{})

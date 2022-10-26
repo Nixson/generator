@@ -8,12 +8,9 @@ import (
 )
 
 var ${table}TableName = "${table}"
-var ${table}TableDB *gorm.DB
+
 func ${name}() *gorm.DB {
-    if ${table}TableDB == nil {
-    	${table}TableDB = db.Get().Table(${table}TableName)
-    }
-    return ${table}TableDB
+    return db.Get().Table(${table}TableName)
 }
 
 func ${name}Create(${subname} *domain.${name}) *gorm.DB {

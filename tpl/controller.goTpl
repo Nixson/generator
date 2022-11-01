@@ -6,6 +6,5 @@ import (
 )
 
 func InitController${name}() {
-	ctx := server.ContextInterface(&ctr.${name}{})
-	server.InitController("${name}", &ctx)
+	server.InitController("${name}", &ctr.${name}{})
 }
